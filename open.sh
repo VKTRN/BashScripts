@@ -1,11 +1,10 @@
 #!/bin/bash
 
-PS3='Please enter your choice: '
+set -e
+source ~/bin/list_input.sh
 
-options=(~/code/*)
+projects=(~/code/*)
+list_input "Choose a project:" projects selected_project
 
-select opt in "${options[@]}"
-do
-  code $opt
-done
+code $selected_project
 
