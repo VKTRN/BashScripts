@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 PS3='Please enter your choice: '
 
 options=(~/code/*)

@@ -1,30 +1,25 @@
 #!/bin/bash
-
+set -e
 rm -rf ~/code/Dojo
+source ~/bin/list_input.sh
 
-PS3='Please enter your choice: '
-options=("Vanilla" "React.js")
-select opt in "${options[@]}"
-do
-  case $opt in
-    "Vanilla")
+templates=( 'Vanilla' 'React.js')
+list_input "Choose a template:" templates selected_template
+ 
+if [ "$selected_template" == "Vanilla" ]; then
       git clone https://github.com/VKTRN/Source.git ~/code/Dojo &&
       cd ~/code/Dojo &&
       git checkout Vanilla
       rm -rf .gitignore .git
       code .
-      break
-      ;;
-    "React.js")
+fi
+
+if [ "$selected_template" == "React.js" ]; then
       git clone https://github.com/VKTRN/Source.git ~/code/Dojo &&
       cd ~/code/Dojo &&
       git checkout React.js
       rm -rf .gitignore .git
       npm install &&
       code .
-      break
-      ;;
-      *) echo "invalid option $REPLY";;
-  esac
-done
+fi
 
